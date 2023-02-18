@@ -6362,7 +6362,8 @@
              var day = todaydate.getDate();
              var month = todaydate.getMonth() + 1;
              var year = todaydate.getFullYear();
-             var datestring = day + "/" + month + "/" + year;
+             var time = todaydate.prototype.toLocaleTimeString():
+             var datestring = day + "/" + month + "/" + year + " - " + time;
              window.onload = function(){
              document.getElementById("date").value = datestring;
              }
