@@ -3910,15 +3910,15 @@ var LadiFormApi = LadiFormApi || {},
                             }
                             e.runtime.tmp.add_to_cart_shipping_method_id = null;
                         },
-                        V = function (t, i, a, n) {
-                            B(a, !1),
-                                q(a, !1, null) &&
-                                    (M(0, i, !1, n, function (t) {
-                                        e.sendRequest("POST", e.const.API_FORM_DATA, JSON.stringify(t), !0, { "Content-Type": "application/json" });
-                                    }),
-                                    e.showMessage(e.const.LANG.FORM_SEND_DATA_NO_CONFIG),
-                                    Y(a));
-                        },
+                        // V = function (t, i, a, n) {
+                        //     B(a, !1),
+                        //         q(a, !1, null) &&
+                        //             (M(0, i, !1, n, function (t) {
+                        //                 e.sendRequest("POST", e.const.API_FORM_DATA, JSON.stringify(t), !0, { "Content-Type": "application/json" });
+                        //             }),
+                        //             e.showMessage(e.const.LANG.FORM_SEND_DATA_NO_CONFIG),
+                        //             Y(a));
+                        // },
                         H = function () {
                             e.showMessage(e.const.LANG.FORM_CAPTCHA_ERROR);
                         },
