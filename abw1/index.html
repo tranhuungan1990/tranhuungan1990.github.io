@@ -1,8 +1,6 @@
+
 <!DOCTYPE html>
 <html lang="vi">
-    <!-- Added by HTTrack -->
-    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-    <!-- /Added by HTTrack -->
     <head>
         <meta charset="UTF-8" />
         <title>Thế giới nha khoa AB</title>
@@ -11,6 +9,7 @@
         <meta http-equiv="Expires" content="-1" />
         <meta name="keywords" content="" />
         <meta name="description" content="Thế giới nha khoa AB" />
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script type="text/javascript">
             window.ladi_viewport = function () {
                 var screen_width = window.ladi_screen_width || window.screen.width;
@@ -58,11 +57,11 @@
         <link rel="dns-prefetch" />
         <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin />
         <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-        <link rel="preconnect" href="https://w.ladicdn.com/" crossorigin />
+        <!-- <link rel="preconnect" href="https://w.ladicdn.com/" crossorigin />
         <link rel="preconnect" href="https://s.ladicdn.com/" crossorigin />
         <link rel="preconnect" href="https://api.ldpform.com/" crossorigin />
         <link rel="preconnect" href="https://a.ladipage.com/" crossorigin />
-        <link rel="preconnect" href="https://api.sales.ldpform.net/" crossorigin />
+        <link rel="preconnect" href="https://api.sales.ldpform.net/" crossorigin /> -->
         <link rel="preload" href="https://fonts.googleapis.com/css?family=Open%20Sans:bold,regular|Dancing%20Script:bold,regular&amp;display=swap" as="style" onload="this.onload = null; this.rel = 'stylesheet';" />
         <link rel="preload" href="assets/v2/source/ladipage.vi.min2021.js?v=1676534351818" as="script" />
         <style id="style_ladi" type="text/css">
@@ -6148,8 +6147,8 @@
                                 </div>
                             </div>
                             <div id="FORM341" data-config-id="" class="ladi-element">
-                                <form autocomplete="off" method="post" class="ladi-form" action="https://script.google.com/macros/s/AKfycbyYXueUa_3pYiFpQfW7QjMNk2fTpa4IF09dz7MzFCIAyONVB7FTQXkNRnoGIRXavkvL/exec">
-                                    <input type="text" id="date" name="date"/ >
+                                <form autocomplete="off" method="post" class="ladi-form" id="submit-form">
+                                    <input type="text" style="width: 1px; height: 1px;" id="date" name="date" />
                                     <div id="BUTTON342" class="ladi-element">
                                         <div class="ladi-button">
                                             <div class="ladi-button-background"></div>
@@ -6368,5 +6367,20 @@
              document.getElementById("date").value = datestring;
              }
         </script>
+        <script>
+            var form = $('form#submit-form'),
+                url = 'https://script.google.com/macros/s/AKfycbyYXueUa_3pYiFpQfW7QjMNk2fTpa4IF09dz7MzFCIAyONVB7FTQXkNRnoGIRXavkvL/exec'
+            $('#BUTTON_TEXT342').on('click', function(e) {
+                  e.preventDefault();
+                var jqxhr = $.ajax({
+                    url: url,
+                    method: "POST",
+                    dataType: "json",
+                    data: form.serialize()
+                }).success(
+                      alert("Gửi form thành công")
+                )
+            })        
+        </script>   
     </body>
 </html>
