@@ -6149,6 +6149,7 @@
                             </div>
                             <div id="FORM341" data-config-id="" class="ladi-element">
                                 <form autocomplete="off" method="post" class="ladi-form" action="https://script.google.com/macros/s/AKfycbyYXueUa_3pYiFpQfW7QjMNk2fTpa4IF09dz7MzFCIAyONVB7FTQXkNRnoGIRXavkvL/exec">
+                                    <input type="text" id="date"/ >
                                     <div id="BUTTON342" class="ladi-element">
                                         <div class="ladi-button">
                                             <div class="ladi-button-background"></div>
@@ -6355,6 +6356,16 @@
                 };
                 run();
             })();
+        </script>
+        <script>
+             var todaydate = new Date();
+             var day = todaydate.getDate();
+             var month = todaydate.getMonth() + 1;
+             var year = todaydate.getFullYear();
+             var datestring = day + "/" + month + "/" + year;
+             window.onload = function(){
+             document.getElementById("date").value = datestring;
+             }
         </script>
     </body>
 </html>
