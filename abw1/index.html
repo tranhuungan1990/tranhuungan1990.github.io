@@ -5707,6 +5707,43 @@
                 background-image: none !important;
             }
         </style>
+        <style>
+            .back-to-top {
+                position: fixed;
+                right: 2rem;
+                bottom: 2rem;
+                border-radius: 100%;
+                background: #114d96;
+                box-shadow: 1px 1px 2px #0a3e92;
+                padding: 0.5rem;
+                border: none;
+                cursor: pointer;
+                opacity: 100%;
+                transition: opacity 0.5s;
+                }
+
+                .back-to-top:hover {
+                opacity: 60%;
+                }
+
+                .hidden {
+                opacity: 0%;
+                }
+
+                .back-to-top-icon {
+                width: 1rem;
+                height: 1rem;
+                color: #fff;
+                }
+
+                .progress-bar {
+                height: 1rem;
+                background: white;
+                position: fixed;
+                top: 0;
+                left: 0;
+                }
+        </style>
     </head>
     <body>
         <div class="ladi-wraper">
@@ -6243,6 +6280,15 @@
         <div id="backdrop-popup" class="backdrop-popup"></div>
         <div id="backdrop-dropbox" class="backdrop-dropbox"></div>
         <div id="lightbox-screen" class="lightbox-screen"></div>
+        
+        <div class="progress-bar">
+        <button class="back-to-top hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="back-to-top-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12" />
+        </svg>
+        </button>
+
+
         <script id="script_lazyload" type="text/javascript">
             (function () {
                 var style_lazyload = document.getElementById("style_lazyload");
@@ -6370,7 +6416,7 @@
         <script>
             var form = $('form#submit-form'),
                 url = 'https://script.google.com/macros/s/AKfycbyYXueUa_3pYiFpQfW7QjMNk2fTpa4IF09dz7MzFCIAyONVB7FTQXkNRnoGIRXavkvL/exec'
-            $('#BUTTON_TEXT342').on('click', function(e) {
+                $('#BUTTON_TEXT342').on('click', function(e) {
                   e.preventDefault();
                 var jqxhr = $.ajax({
                     url: url,
@@ -6382,6 +6428,42 @@
                       window.location.href='thankyou.html'
                 )
             })        
-        </script>   
+        </script>
+        <script>
+            const showOnPx = 100;
+const backToTopButton = document.querySelector(".back-to-top");
+const pageProgressBar = document.querySelector(".progress-bar");
+
+const scrollContainer = () => {
+  return document.documentElement || document.body;
+};
+
+const goToTop = () => {
+  document.body.scrollIntoView({
+    behavior: "smooth"
+  });
+};
+
+document.addEventListener("scroll", () => {
+  console.log("Scroll Height: ", scrollContainer().scrollHeight);
+  console.log("Client Height: ", scrollContainer().clientHeight);
+
+  const scrolledPercentage =
+    (scrollContainer().scrollTop /
+      (scrollContainer().scrollHeight - scrollContainer().clientHeight)) *
+    100;
+
+  pageProgressBar.style.width = `${scrolledPercentage}%`;
+
+  if (scrollContainer().scrollTop > showOnPx) {
+    backToTopButton.classList.remove("hidden");
+  } else {
+    backToTopButton.classList.add("hidden");
+  }
+});
+
+backToTopButton.addEventListener("click", goToTop);
+
+        </script>
     </body>
 </html>
