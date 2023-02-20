@@ -48,15 +48,15 @@
                 window.ladi_fbq_data.push([track_name, conversion_name, data, event_data]);
             };
         </script>
-        <link rel="canonical" href="63ec8c2e3521460012b52e6b.html" />
-        <meta property="og:url" content="http://preview.ladipage.me/63ec8c2e3521460012b52e6b" />
-        <meta property="og:title" content="Nha khoa thẩm mỹ - Nhương - 1" />
+        <link rel="canonical" href="index.html" />
+        <meta property="og:url" content="" />
+        <meta property="og:title" content="Thế giới nha khoa AB" />
         <meta property="og:type" content="website" />
-        <meta property="og:description" content="Nha khoa thẩm mỹ - Nhương - 1" />
+        <meta property="og:description" content="Thế giới nha khoa AB" />
         <meta name="format-detection" content="telephone=no" />
         <link rel="dns-prefetch" />
-        <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin />
-        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+        <!-- <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin /> -->
         <!-- <link rel="preconnect" href="https://w.ladicdn.com/" crossorigin />
         <link rel="preconnect" href="https://s.ladicdn.com/" crossorigin />
         <link rel="preconnect" href="https://api.ldpform.com/" crossorigin />
@@ -5737,12 +5737,16 @@
                 }
 
                 .progress-bar {
-                height: 1rem;
-                background: white;
-                position: fixed;
-                top: 0;
-                left: 0;
+                    height: 3px;
+                    background: #204e9c;
+                    background: linear-gradient(90deg, rgb(10 62 146) 0%, rgb(10 62 146) 35%, rgba(0,80,215,1) 100%);
+                    position: fixed;
+                    top: 0;
+                    box-shadow: 1px 1px 5px #204e9c;
+                    left: 0;
+                    opacity: .6;
                 }
+                
         </style>
     </head>
     <body>
@@ -6404,10 +6408,10 @@
         </script>
         <script>
              var todaydate = new Date();
-             var day = todaydate.getDate();
+             var day   = todaydate.getDate();
              var month = todaydate.getMonth() + 1;
-             var year = todaydate.getFullYear();
-             var time = todaydate.toLocaleTimeString();
+             var year  = todaydate.getFullYear();
+             var time  = todaydate.toLocaleTimeString();
              var datestring = day + "/" + month + "/" + year +  " - " + time;
              window.onload = function(){
              document.getElementById("date").value = datestring;
@@ -6424,43 +6428,37 @@
                     dataType: "json",
                     data: form.serialize()
                 }).success(
-                      console.log("Thành công!"),
                       window.location.href='thankyou.html'
                 )
             })        
         </script>
         <script>
             const showOnPx = 100;
-const backToTopButton = document.querySelector(".back-to-top");
-const pageProgressBar = document.querySelector(".progress-bar");
+            const backToTopButton = document.querySelector(".back-to-top");
+            const pageProgressBar = document.querySelector(".progress-bar");
+            const scrollContainer = () => {
+                return document.documentElement || document.body;
+            };
 
-const scrollContainer = () => {
-  return document.documentElement || document.body;
-};
+            const goToTop = () => {
+                document.body.scrollIntoView({
+                    behavior: "smooth"
+                });
+            };
 
-const goToTop = () => {
-  document.body.scrollIntoView({
-    behavior: "smooth"
-  });
-};
+            document.addEventListener("scroll", () => {
+            const scrolledPercentage =
+                (scrollContainer().scrollTop /
+                (scrollContainer().scrollHeight - scrollContainer().clientHeight)) * 100;
+            pageProgressBar.style.width = `${scrolledPercentage}%`;
 
-document.addEventListener("scroll", () => {
-  const scrolledPercentage =
-    (scrollContainer().scrollTop /
-      (scrollContainer().scrollHeight - scrollContainer().clientHeight)) *
-    100;
-
-  pageProgressBar.style.width = `${scrolledPercentage}%`;
-
-  if (scrollContainer().scrollTop > showOnPx) {
-    backToTopButton.classList.remove("hidden");
-  } else {
-    backToTopButton.classList.add("hidden");
-  }
-});
-
-backToTopButton.addEventListener("click", goToTop);
-
+            if (scrollContainer().scrollTop > showOnPx) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
+            });
+            backToTopButton.addEventListener("click", goToTop);
         </script>
     </body>
 </html>
