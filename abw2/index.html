@@ -55,8 +55,8 @@
         <meta property="og:description" content="ABW" />
         <meta name="format-detection" content="telephone=no" />
         <link rel="dns-prefetch" />
-        <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin />
-        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+        <!-- <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin /> -->
         <!-- <link rel="preconnect" href="https://w.ladicdn.com/" crossorigin />
         <link rel="preconnect" href="https://s.ladicdn.com/" crossorigin />
         <link rel="preconnect" href="https://api.ldpform.com/" crossorigin />
@@ -6524,6 +6524,45 @@
                 background-image: none !important;
             }
         </style>
+        <style>
+            .back-to-top {
+                position: fixed;
+                right: 2rem;
+                bottom: 2rem;
+                border-radius: 100%;
+                background: #114d96;
+                box-shadow: 1px 1px 2px #0a3e92;
+                padding: 0.5rem;
+                border: none;
+                cursor: pointer;
+                opacity: 100%;
+                transition: opacity 0.5s;
+                }
+
+                .back-to-top:hover {
+                opacity: 60%;
+                }
+
+                .hidden {
+                opacity: 0%;
+                }
+
+                .back-to-top-icon {
+                width: 1rem;
+                height: 1rem;
+                color: #fff;
+                }
+
+                .progress-bar {
+                    height: 3px;
+                    background: #204e9c;
+                    background: linear-gradient(90deg, rgb(10 62 146) 0%, rgb(10 62 146) 35%, rgba(0,80,215,1) 100%);
+                    position: fixed;
+                    top: 0;
+                    box-shadow: 1px 1px 5px #204e9c;
+                    left: 0;
+                }
+        </style>
     </head>
     <body>
         <div class="ladi-wraper">
@@ -7265,6 +7304,14 @@
         <div id="backdrop-popup" class="backdrop-popup"></div>
         <div id="backdrop-dropbox" class="backdrop-dropbox"></div>
         <div id="lightbox-screen" class="lightbox-screen"></div>
+
+        <div class="progress-bar">
+        <button class="back-to-top hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="back-to-top-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12" />
+            </svg>
+        </button>
+
         <script id="script_lazyload" type="text/javascript">
             (function () {
                 var style_lazyload = document.getElementById("style_lazyload");
@@ -7377,19 +7424,47 @@
             }
        </script>
        <script>
-           var form = $('form#submit-form'),
-               url = 'https://script.google.com/macros/s/AKfycbyYXueUa_3pYiFpQfW7QjMNk2fTpa4IF09dz7MzFCIAyONVB7FTQXkNRnoGIRXavkvL/exec'
-           $('#BUTTON_TEXT359').on('click', function(e) {
-                 e.preventDefault();
-               var jqxhr = $.ajax({
-                   url: url,
-                   method: "POST",
-                   dataType: "json",
-                   data: form.serialize()
-               }).success(
-                     alert("Gửi form thành công")
-               )
-           })        
-       </script>   
+        var form = $('form#submit-form'),
+            url = 'https://script.google.com/macros/s/AKfycbyYXueUa_3pYiFpQfW7QjMNk2fTpa4IF09dz7MzFCIAyONVB7FTQXkNRnoGIRXavkvL/exec'
+            $('#BUTTON_TEXT359').on('click', function(e) {
+              e.preventDefault();
+            var jqxhr = $.ajax({
+                url: url,
+                method: "POST",
+                dataType: "json",
+                data: form.serialize()
+            }).success(
+                  window.location.href='thankyou.html'
+            )
+        })        
+    </script>
+    <script>
+        const showOnPx = 100;
+        const backToTopButton = document.querySelector(".back-to-top");
+        const pageProgressBar = document.querySelector(".progress-bar");
+        const scrollContainer = () => {
+            return document.documentElement || document.body;
+        };
+
+        const goToTop = () => {
+            document.body.scrollIntoView({
+                behavior: "smooth"
+            });
+        };
+
+        document.addEventListener("scroll", () => {
+        const scrolledPercentage =
+            (scrollContainer().scrollTop /
+            (scrollContainer().scrollHeight - scrollContainer().clientHeight)) * 100;
+        pageProgressBar.style.width = `${scrolledPercentage}%`;
+
+        if (scrollContainer().scrollTop > showOnPx) {
+            backToTopButton.classList.remove("hidden");
+        } else {
+            backToTopButton.classList.add("hidden");
+        }
+        });
+        backToTopButton.addEventListener("click", goToTop);
+    </script>
     </body>
 </html>
