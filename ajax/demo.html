@@ -28,7 +28,7 @@
                         var xhr = new window.XMLHttpRequest();
                         var progressBar = $("#progressbar");
                         //Upload progress
-                        xhr.upload.addEventListener("progress", function(evt) {
+                        xhr.download.addEventListener("progress", function(evt) {
                             if (evt.lengthComputable) {
                                 var percentComplete = (evt.loaded/evt.total)*100;
                                 percentComplete = Math.floor(percentComplete);
