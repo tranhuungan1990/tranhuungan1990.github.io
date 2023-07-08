@@ -26,6 +26,21 @@
                     method: 'GET',
                     url: 'data/bird.json',
                     dataType: 'json',
+                    xhr: function() {
+                        var xhr = new window.XMLHttpRequest();
+                        var progressBar = $("#progressbar");
+                        //Upload progress
+                        xhr.upload.addEventListener("progress", function(evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = (evt.loaded/evt.total)*100;
+                                percentComplete = Math.floor(percentComplete);
+                                console.log(percentComplete);
+                                progressBar.css("width", percentComplete + "%");
+                                progressBar.html(percentComplete+'%');
+                            }
+                        }, false);
+                    return xhr;
+                    },
                     success: function() {
                         console.log('YAYE!', arguments[0]);
                     },
@@ -51,5 +66,6 @@
     </head>
     <body>
         <div id="prog"></div>
+        <div id="progressbar" style="background: red; height: 20px;"></div>
     </body>
 </html>
